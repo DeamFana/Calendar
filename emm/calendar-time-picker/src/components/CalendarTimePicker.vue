@@ -55,7 +55,7 @@ export default {
         date,
         isToday: isToday(date),
         isThisMonth: isThisMonth(date),
-        startDay: selectedDateRange.value.length==1 && isWithinInterval(date, { start: selectedDateRange.value[0], end: selectedDateRange.value[1] }),
+        startDay: selectedDateRange.value.length === 1 && isSameDay(date, selectedDateRange.value[0]),
         isSelected: selectedDateRange.value.length && isWithinInterval(date, { start: selectedDateRange.value[0], end: selectedDateRange.value[1] }),
         isInRange: selectedDateRange.value.length === 2 && isWithinInterval(date, { start: selectedDateRange.value[0], end: selectedDateRange.value[1] }) && !isSameDay(date, selectedDateRange.value[0]) && !isSameDay(date, selectedDateRange.value[1])
       }));
@@ -126,15 +126,6 @@ html, body {
   background-color: #f5f5f5;
 }
 
-/* .calendar-time-picker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  margin: 30px auto;
-} */
-
 .calendar {
   width: 30%;
   max-width: 400px;
@@ -179,14 +170,14 @@ html, body {
   align-items: center;
   padding: 1px;
   font-size: 16px;
-  color: #888;
+  color: #5c5c5c;
 }
 
 .day {
   text-align: center;
   padding: 1px;
   font-size: 16px;
-  color: #888;
+  color: #c2c2c2;
 }
 
 .day-month {
