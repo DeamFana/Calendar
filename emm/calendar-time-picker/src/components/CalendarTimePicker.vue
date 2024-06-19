@@ -230,7 +230,7 @@ html, body {
   background-color: #faf3fe;
   z-index: -1;
 }
-rgb(236, 236, 236)rgb(236, 236, 236)
+
 .time-picker {
   display: flex;
   flex-direction: column;
