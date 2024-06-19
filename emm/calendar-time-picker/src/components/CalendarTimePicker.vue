@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { addMonths, addYears, eachDayOfInterval, endOfMonth, endOfWeek, format, isSameDay, isThisMonth, isToday, isWithinInterval, startOfMonth, startOfWeek, subMonths, subYears } from 'date-fns';
+import { addMonths, addYears, eachDayOfInterval, endOfMonth, endOfWeek, format, isSameDay, isSameMonth, isToday, isWithinInterval, startOfMonth, startOfWeek, subMonths, subYears } from 'date-fns';
 import { computed, ref } from 'vue';
 
 export default {
@@ -54,7 +54,7 @@ export default {
       return eachDayOfInterval({ start: startWeekDay, end: endWeekDay }).map(date => ({
         date,
         isToday: isToday(date),
-        isThisMonth: isThisMonth(date),
+        isThisMonth: isSameMonth(date, currentDate.value),
         startDay: selectedDateRange.value.length === 1 && isSameDay(date, selectedDateRange.value[0]),
         isSelected: selectedDateRange.value.length && isWithinInterval(date, { start: selectedDateRange.value[0], end: selectedDateRange.value[1] }),
         isInRange: selectedDateRange.value.length === 2 && isWithinInterval(date, { start: selectedDateRange.value[0], end: selectedDateRange.value[1] }) && !isSameDay(date, selectedDateRange.value[0]) && !isSameDay(date, selectedDateRange.value[1])
@@ -162,7 +162,7 @@ html, body {
   width: 100%;
   gap: 10px;
   padding: 25px;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 .day-of-week {
@@ -194,6 +194,7 @@ html, body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  position: relative;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -218,9 +219,18 @@ html, body {
 }
 
 .day-in-range {
-  background-color: #d3d3d3;
+  background-color: #dfdddd;
 }
 
+.day-in-range::before {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 35px;
+  background-color: #faf3fe;
+  z-index: -1;
+}
+rgb(236, 236, 236)rgb(236, 236, 236)
 .time-picker {
   display: flex;
   flex-direction: column;
